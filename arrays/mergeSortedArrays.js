@@ -17,4 +17,4 @@ function mergeSortedArrays(a1, a2){
     return arr;
 }
 
-mergeSortedArrays([0,3,4,31], [3,4,6,30]);
+console.log(mergeSortedArrays([0,3,4,31], [3,4,6,30]));
