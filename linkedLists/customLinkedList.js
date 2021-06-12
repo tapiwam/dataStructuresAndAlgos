@@ -19,6 +19,13 @@ let myLinkedListManual = {
 
 // Implementation of a new linked list
 
+class LinkedListNode {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
 class LinkedList {
 
     constructor(headValue) {
@@ -32,6 +39,7 @@ class LinkedList {
         this.tail.next = nextNode;
         this.tail = nextNode;
         this.length += 1;
+        return this;
     }
 
     prepend(prependValue) {
@@ -39,13 +47,11 @@ class LinkedList {
         newHead.next = this.head;
         this.head = newHead;
         this.length += 1;
+        return this;
     }
 
     _createNode(val){
-        return {
-            value: val,
-            next: null
-        }
+        return new LinkedListNode(val);
     }
 }
 
