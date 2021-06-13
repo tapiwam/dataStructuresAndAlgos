@@ -47,7 +47,6 @@ function fibonacciRecursive(n) {
     }
 
     return fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
-
 }
 
 console.log('fibonacciRecursive', fibonacciRecursive(3));
