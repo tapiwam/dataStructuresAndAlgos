@@ -5,6 +5,7 @@
 
 //For example: fibonacciRecursive(6) should return 8
 
+// Time complexity -> O(n)
 function fibonacciIterative(n){
     // Iterate starting from 0 to n-1 and apply. We need to handle 0 and 1 explicitly
 
@@ -34,6 +35,8 @@ console.log('fibonacciIterative(5) = ', fibonacciIterative(5));
 console.log('fibonacciIterative(6) = ', fibonacciIterative(6));
 console.log('fibonacciIterative(10) = ', fibonacciIterative(10));
 
+// Time complexity -> O(2^n) -> exponential time
+// Here the fib(n-1) + fib(n-2) is a problem
 function fibonacciRecursive(n) {
     if(n == null){
         return null;
