@@ -78,39 +78,52 @@ class BinarySearchTree {
     }
 
     lookup(value){
+        console.log("========================");
+        console.log("SEARCHING :: " + value);
+
+
         // Check if tree has at least a root element
         if(!this.root){
-            console.log("Binary Tree is empty");
+            console.log(value + " :: Binary Tree is empty");
             return null;
         } else if (!value){
-            console.log("Invalid value passed to lookup.");
+            console.log(value + " :: Invalid value passed to lookup.");
             return null;
         } else {
-            let holderNode = this.root;
 
+            console.log(value + " :: Searching for value.");
+
+            let holderNode = this.root;
             while (holderNode != null) {
 
-                console.log("----------------------");
+                console.log("***");
                 if(holderNode.value === value){
+                    console.log(value + " :: Found value on current node.");
                     return holderNode;
-                } else if(holderNode.value < value){
+                } else if(holderNode.value > value){
+                    console.log(value + " :: Check falling to left. @node=" + holderNode.value);
                     if(holderNode.left === null){
                         // Not found so return
+                        console.log(value + " :: Nothing on left chain. NOT-FOUND. @node=" + holderNode.value);
                         return null;
                     } else {
+                        console.log(value + " :: Traversing to left node. @node=" + holderNode.value);
                         holderNode = holderNode.left;
                     }
                 } else {
+                    console.log(value + " :: Check falling to right. @node=" + holderNode.value);
                     if(holderNode.right === null){
                         // Not found so return
+                        console.log(value + " :: Nothing on right chain. NOT-FOUND. @node=" + holderNode.value);
                         return null;
                     } else {
+                        console.log(value + " :: Traversing to right node. @node=" + holderNode.value);
                         holderNode = holderNode.right;
                     }
                 }
             }
 
-            console.log("----------------------");
+            console.log("========================");
         }
     }
     // remove
@@ -127,6 +140,12 @@ tree.insert(45)
 tree.insert(39)
 tree.insert(15)
 tree.insert(1)
+
+
+console.log('Lookup: ', tree.lookup(40));
+console.log('=============================');
+console.log('=============================');
+
 console.log(JSON.stringify(traverse(tree.root), null, 2));
 
 //     9
