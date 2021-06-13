@@ -23,6 +23,7 @@ class LinkedListNode {
     constructor(value) {
         this.value = value;
         this.next = null;
+        this.previous = null;
     }
 }
 
@@ -37,6 +38,8 @@ class LinkedList {
     append(appendedValue){
         const nextNode = this._createNode(appendedValue);
         this.tail.next = nextNode;
+        nextNode.previous = this.tail;
+
         this.tail = nextNode;
         this.length += 1;
         return this;
@@ -45,7 +48,10 @@ class LinkedList {
     prepend(prependValue) {
         const newHead = this._createNode(prependValue);
         newHead.next = this.head;
+
         this.head = newHead;
+        this.head.next.previous = this.head;
+
         this.length += 1;
         return this;
     }
@@ -60,8 +66,12 @@ class LinkedList {
 
             // Not that we current node, insert
             const newNode = this._createNode(value);
+
             newNode.next = currentNode.next;
+            newNode.next.previous = newNode;
+            newNode.previous = currentNode;
             currentNode.next = newNode;
+
             this.length += 1;
         } else {
             // append to end?
@@ -79,6 +89,7 @@ class LinkedList {
         if(index == 0){
             if(this.head.next !== null){
                 this.head = this.head.next;
+                this.head.previous = null;
                 this.length -= 1;
             }
         } else if( index > 0 && index <= this.length-1 ){
@@ -87,58 +98,14 @@ class LinkedList {
 
             // Bridge
             previousNode.next = currentNode.next;
+            currentNode.previous = previousNode;
+
             this.length -= 1;
         } else {
             console.log("Index is out of bounds. Cannot remove @index=" + index + " @maxIndex=" + (this.length-1));
         }
 
         return this;
-    }
-
-    /**
-     * Reverse the linked list in place.
-     * @returns {LinkedListNode|*}
-     */
-    reverse(){
-        if(!this.head.next){
-            return  this.head;
-        }
-
-        let first = this.head;
-        let cursor = first.next;
-
-        while (cursor){
-            // Keep track of the next
-            const tempNextCursor = cursor.next;
-
-            // Reverse the pointers
-            cursor.next = first;
-
-            // Move to the next
-            first = cursor;
-            cursor = tempNextCursor;
-        }
-
-        // Set new head and tail
-        this.head.next = null;
-        this.head = first;
-
-        return this;
-    }
-
-    /**
-     * Create a new revered version of this linked list
-     * @returns {LinkedList}
-     */
-    reverse2(){
-        let arr = this.toArray();
-        const reversedLinkedList = new LinkedList(arr[this.length-1]);
-
-        for (let i=arr.length-2; i>=0; i--){
-            reversedLinkedList.append(arr[i]);
-        }
-
-        return reversedLinkedList;
     }
 
     _traverseToIndex(index){
@@ -198,13 +165,10 @@ console.log(JSON.stringify(myLinkedList.toArray()));
 myLinkedList.remove(2)
 console.log(JSON.stringify(myLinkedList.toArray()));
 
-r1 = myLinkedList.reverse();
-console.log(JSON.stringify(r1.toArray()));
-
 myLinkedList.remove(4)
 console.log(JSON.stringify(myLinkedList.toArray()));
 
 myLinkedList.remove(4)
 console.log(JSON.stringify(myLinkedList.toArray()));
 
-console.log('Linked list value:', JSON.stringify(myLinkedList));
+// console.log('Linked list value:', JSON.stringify(myLinkedList));
