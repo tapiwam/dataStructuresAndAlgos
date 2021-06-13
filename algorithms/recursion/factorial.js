@@ -1,7 +1,7 @@
 // Write two functions that finds the factorial of any number. One should use recursive, the other should just use a for loop
-
 // e.g. 5! = 5*4*3*2*1
 
+// Time complexity -> O(n)
 function findFactorialRecursive(number) {
     // check num
     if(number === null){
@@ -20,6 +20,7 @@ function findFactorialRecursive(number) {
     return number * findFactorialRecursive(number - 1);
 }
 
+// Time complexity -> O(n)
 function findFactorialIterative(number) {
     // check num
     if(!number){
