@@ -5,8 +5,8 @@
 
 //For example: fibonacciRecursive(6) should return 8
 
-// Time complexity -> O(2^n) -> exponential time
-// Here the fib(n-1) + fib(n-2) is a problem
+// Time complexity -> O(n) -> linear time
+// Space complexity inc
 
 let calculations = 0;
 function fibonacciRecursive(n) {
