@@ -4,8 +4,8 @@ function selectionSort(array) {
 
     const len = array.length;
     for(let i=0; i<len-1; i++){
-        // Inner loop for to find smallest after index i
 
+        // Inner loop for to find smallest after index i
         let minIndex = i;
         let min = array[i];
 
